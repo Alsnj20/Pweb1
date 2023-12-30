@@ -6,11 +6,15 @@ print "Content-type: text/html\n\n";
 print "<meta charset=\"UTF-8\">";
 my $q = CGI->new;
 my $expression = $q->param('expression');
-if($expression =~ /(\d\+-\*\/)/){
-    my $resultado = resolver_expresion($expression);
-    print "El Resultado de la expresión $expression es $resultado\n";
+if($expression){
+    if($expression =~ /[\d\+\-\*\/]+/){
+        my $resultado = resolver_expresion($expression);
+        print "El Resultado de la expresión $expression es $resultado\n";
+    }else{
+        print "Ingrese una expresión aritmética ejemplo: (4+5)*8\n";
+    }
 }else{
-    print "Ingrese una expresión aritmética ejemplo: (4+5)*8\n";
+        print "Ingrese algo\n";
 }
 sub resolver_expresion {
     my ($expresion) = @_;
