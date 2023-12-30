@@ -17,7 +17,7 @@ sub resolver_expresion {
     while ($expresion =~ /\(([^\(\)]+)\)/) {
         my $expresion_interna = $1;
         my $resultado_interno = resolver_expresion($expresion_interna);
-        $expresion =~ s/($expresion_interna)/$resultado_interno/;
+        $expresion =~ s/\Q($expresion_interna)\E/$resultado_interno/;
     }
-    return $expresion;  
+    return eval $expresion;  
 }
