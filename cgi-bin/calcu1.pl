@@ -2,7 +2,8 @@
 use strict;
 use warnings;
 use CGI;
-print "Content-type: text/html\n\n"; 
+print "Content-type: text/html\n\n";
+print "<meta charset=\"UTF-8\">";
 my $q = CGI->new;
 my $expression = $q->param('expression');
 if($expression){
