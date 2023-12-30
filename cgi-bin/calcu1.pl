@@ -2,27 +2,30 @@
 use strict;
 use warnings;
 use CGI;
-print "Content-type: text/html\n\n";
+print "Content-type: text/html\n\n"; 
 my $q = CGI->new;
 my $expression = $q->param('expression');
 if($expression){
-    my ($nro1, %nro2 $resultado);
-    if ($expression =~ /(\d+)\+/(\d+)/) {
+    my ($nro1, $nro2, $resultado) = (0, 0, 0);
+    if ($expression =~ /(\d+)\+(\d+)/) {
         $nro1 = $1;
         $nro2 = $2;
         $resultado = $nro1 + $nro2;
-    }else if ($expression =~ /(\d+)\-(\d+)/) {
+    }
+    if ($expression =~ /(\d+)-(\d+)/) {
         $nro1 = $1;
         $nro2 = $2;
         $resultado = $nro1 - $nro2;
-    }else if ($expression =~ /(\d+)\*(\d+)/) {
+    }
+    if ($expression =~ /(\d+)\*(\d+)/) {
         $nro1 = $1;
         $nro2 = $2;
         $resultado = $nro1 * $nro2;
-    }else ($expression =~ /(\d+)\/(\d+)/) {
+    }
+    if ($expression =~ /(\d+)\/(\d+)/) {
         $nro1 = $1;
         $nro2 = $2;
-        $resultado = ($nro2 != 0 )? $nro1/$nro2:"ERROR: Divicion entre cero";
+        $resultado = ($nro2 != 0) ? $nro1/$nro2:"ERROR: Divicion entre cero";
     }
     print "El resultado de la operación es: $resultado";
 } else {
