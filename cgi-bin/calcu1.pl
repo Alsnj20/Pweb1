@@ -5,34 +5,19 @@ use CGI;
 print "Content-type: text/html\n\n";
 print "<meta charset=\"UTF-8\">";
 my $q = CGI->new;
-my $expression = '(5+3)*8';
-if($expression){
-    if  ($expression =~ /\((\d+[+\-*\/]\d+)\)([+\-*\/]\d+)/) {
-        my $nro1 = $1;
-        my $operador1 = $2;
-        my $nro2 = $3;
-        my $resultado;
-        if ($operador1 eq '+') {
-            $resultado = $nro1 + $nro2;
-        } elsif ($operador1 eq '-') {
-            $resultado = $nro1 - $nro2;
-        } elsif ($operador1 eq '*') {
-            $resultado = $nro1 * $nro2;
-        } elsif ($operador1 eq '/') {
-            if ($nro2 != 0) {
-                $resultado = $nro1 / $nro2;
-            } else {
-                print "Error: División por cero";
-                exit;
-            }
-        } else {
-            print "Error: Operador no válido";
-            exit;
-        }
-        print "El resultado de la operación es: $resultado";
-    } else {
-        print "No hay paréntesis";
+my $expression = $q->param('expression');
+if($expresion =~ /(\d\+-\*\/)/){
+    my $resultado = resolver_expresion($expression);
+    print "El Resultado de la expresión $expression es $resultado\n";
+}else{
+    print "Ingrese una expresión aritmética ejemplo: (4+5)*8\n";
+}
+sub resolver_expresion {
+    my ($expresion) = @_;
+    while ($expresion =~ /\(([^\(\)]+)\)/) {
+        my $expresion_interna = $1;
+        my $resultado_interno = resolver_expresion($expresion_interna);
+        $expresion =~ s/\Q($expresion_interna)\E/$resultado_interno/;
     }
-} else {
-    print "Ingresa algo";
+    return $expresion;  
 }
