@@ -5,30 +5,34 @@ use CGI;
 print "Content-type: text/html\n\n";
 print "<meta charset=\"UTF-8\">";
 my $q = CGI->new;
-my $expression = $q->param('expression');
+my $expression = '(5+3)*8';
 if($expression){
-    my ($nro1, $nro2, $resultado) = (0, 0, 0);
-    if ($expression =~ /(\d+)\+(\d+)/) {
-        $nro1 = $1;
-        $nro2 = $2;
-        $resultado = $nro1 + $nro2;
+    if  ($expression =~ /\((\d+[+\-*\/]\d+)\)([+\-*\/]\d+)/) {
+        my $nro1 = $1;
+        my $operador1 = $2;
+        my $nro2 = $3;
+        my $resultado;
+        if ($operador1 eq '+') {
+            $resultado = $nro1 + $nro2;
+        } elsif ($operador1 eq '-') {
+            $resultado = $nro1 - $nro2;
+        } elsif ($operador1 eq '*') {
+            $resultado = $nro1 * $nro2;
+        } elsif ($operador1 eq '/') {
+            if ($nro2 != 0) {
+                $resultado = $nro1 / $nro2;
+            } else {
+                print "Error: División por cero";
+                exit;
+            }
+        } else {
+            print "Error: Operador no válido";
+            exit;
+        }
+        print "El resultado de la operación es: $resultado";
+    } else {
+        print "No hay paréntesis";
     }
-    if ($expression =~ /(\d+)-(\d+)/) {
-        $nro1 = $1;
-        $nro2 = $2;
-        $resultado = $nro1 - $nro2;
-    }
-    if ($expression =~ /(\d+)\*(\d+)/) {
-        $nro1 = $1;
-        $nro2 = $2;
-        $resultado = $nro1 * $nro2;
-    }
-    if ($expression =~ /(\d+)\/(\d+)/) {
-        $nro1 = $1;
-        $nro2 = $2;
-        $resultado = ($nro2 != 0) ? $nro1/$nro2:"ERROR: Divicion entre cero";
-    }
-    print "El resultado de la operación es: $resultado";
 } else {
     print "Ingresa algo";
 }
