@@ -2,9 +2,8 @@
 use strict;
 use warnings;
 use CGI;
-#cabecera de información
 print "Content-type: text/html\n\n";
-print "<meta charset=\"UTF-8\">";
+#cabecera de información
 print <<HTML;
 <!DOCTYPE html>
 <html>
@@ -25,7 +24,7 @@ if(!($fields eq "") && !($data eq "")){
     while(my $line = <IN>){
         my %list = isMatchLine($line);
         my $value = $list{$fields};
-        if(defined($value) && $value =~ /.*$data.*/){
+        if($value && $value =~ /.*$data.*/){
             print "<h1>Encontrado:</h1>\n";
             print "<p>$line</p>";
             $flag = 1;
@@ -35,7 +34,7 @@ if(!($fields eq "") && !($data eq "")){
     close(IN);
 }
 if(!defined($flag)){
-    print "<h1>No encontrado</h1>\n";
+    print "<h1>No encontrado<h1>\n";
 }
 print <<HTML;
         <p>Ingrese <a href="../consulta.html">AQUI</a> para regresar al formulario de búsqueda</p>
@@ -61,6 +60,7 @@ HTML
 sub isMatchLine {
     my $line = $_[0];
     my %dict;
+
     if ($line =~ /(\d+)\|([^|]+)\|([^|]+)\|([^|]+)\|(\d+)\|(.{1})\|
                    (.+\-.+)\|
                    (.+)?\|(.+(\d+)$)\|([^|]+)\|([^|]+)\|(. +)\|
@@ -84,8 +84,9 @@ sub isMatchLine {
         $dict{"LONGITUD_UBICACION"} = $15;
         $dict{"TIPO_AUTORIZACION_LOCAL"} = $16;
         $dict{"DENOMINACION_PROGRAMA"} = $17;
+    } else {
+        print "<h2>Error la linea no hace match:</h2>\n";
     }
+
     return %dict;
 }
-
-
