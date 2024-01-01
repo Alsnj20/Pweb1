@@ -1,34 +1,36 @@
 #!C:/xampp/perl/bin/perl.exe
+binmode(STDOUT, ":utf8"); #perl entre el archivo con charset utf-8
 use strict;
 use warnings;
 use CGI;
 #cabecera de información
 print "Content-type: text/html\n\n";
-print "<meta charset=\"UTF-8\">";
 print <<HTML;
 <!DOCTYPE html>
-<html>
-  <head> 
-    <meta charset="utf-8"> 
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head> 
     <link rel="stylesheet" type="text/css" href="../estilo.css">
     <title>Búsqueda de Universidades Licenciadas</title>
   </head>
 <body>
 HTML
 my $query = CGI->new;
-my $fields = $query->param("fields");
-my $data = $query->param("data");
+print "INGRESE VARIABLE";
+my $fields = <STDIN>;
+my $data = <STDIN>;
 
 my $flag;
+
 if(!($fields eq "") && !($data eq "")){
-    open(IN, "../data/Programas de Universidades.csv") or die "<h1>ERROR: open file</h1>\n";
+open(IN, "../data/Programas de Universidades.csv") or die "<h1>ERROR: open file</h1>\n";
     print "<p>Iniciando archivo</p>\n";
     while(my $line = <IN>){
-        print "ENTRO";
+    print "$line stop\n";
         my %list = isMatchLine($line);
-        print "Ingreso ";
         my $value = $list{$fields};
-        print "Otra vez \n";
         if(defined($value) && $value =~ /.*$data.*/){
             print "<h1>Encontrado:</h1>\n";
             print "<p>$line</p>";
@@ -65,11 +67,12 @@ HTML
 sub isMatchLine {
     my $line = $_[0];
     my %dict;
-    if ($line =~ /(\d+)\|([^|]+)\|([^|]+)\|([^|]+)\|(\d+)\|(.{1})\|
+
+    if ($line =~ /^(\d+)\|([^|]+)\|([^|]+)\|([^|]+)\|(\d+)\|(.{1})\|
                    (.+\-.+)\|
-                   (.+)?\|(.+(\d+)$)\|([^|]+)\|([^|]+)\|(. +)\|
-                   (\-\^\d+\.\d+\$){2}\|(. +)\|((. +)\.*$)\|
-                   (. +)\|([^|]+)\|(. +)\|(\d+)\|(. +)\|((. +)\.*$)\|((. +))\.*$/x
+                   ([^|]+)?\|([^|]+(\d+))\|([^|]+)\|([^|]+)\|([^|]+)\|
+                   (\-\^\d+\.\d+\$){2}\|([^|]+)\|(([^|]+)\.*$)\|
+                   ([^|]+)\|([^|]+)\|([^|]+)\|(\d+)\|([^|]+)\|(([^|]+)\.*$)\|(([^|]+)\|[^|]+)\|([^|]+)\|([^|]+)\|([^|]+)\|([^|]+)\|([^|]+)\|([^|]+)\|([^|]+)$/x
     ) {
         $dict{"CODIGO_ENTIDAD"} = $1;
         $dict{"name"} = $2;
@@ -88,6 +91,12 @@ sub isMatchLine {
         $dict{"LONGITUD_UBICACION"} = $15;
         $dict{"TIPO_AUTORIZACION_LOCAL"} = $16;
         $dict{"program"} = $17;
+        $dict{"TIPO_NIVEL_ACADEMICO"} = $18;
+        $dict{"NIVEL_ACADEMICO"} = $19;
+        $dict{"CODIGO_CLASE_PROGRAMA_N2"} = $20;
+        $dict{"NOMBRE_CLASE_PROGRAMA_N2"} = $21;
+        $dict{"TIPO_AUTORIZACION_PROGRAMA"} = $22;
+        $dict{"TIPO_AUTORIZACION_PROGRAMA_LOCAL"} = $23;
     }
     return %dict;
 }
