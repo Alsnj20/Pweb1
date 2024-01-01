@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="./cgi-bin/consult.pl">
+        <label for="fields">Buscar Universidades Licenciadas por: </label>
+        <select name="fields">
+            <option value="name"> Nombre Universidad </option>
+            <option value="period"> Periodo Linceciamiento </option>
+            <option value="department"> Departamento Local </option>
+            <option value="program"> Denominación Programa</option>
+        </select>
+        <input type="text" name="data"><br>
+        <input type="submit" value="    Buscar">
+    </form>
+</body>
+</html>
