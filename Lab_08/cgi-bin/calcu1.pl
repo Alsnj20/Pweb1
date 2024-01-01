@@ -23,5 +23,5 @@ sub resolver_expresion {
         my $resultado_interno = resolver_expresion($expresion_interna);
         $expresion =~ s/\Q($expresion_interna)\E/$resultado_interno/;
     }
-    return eval $expresion;  
+    return eval $expresion;
 }
