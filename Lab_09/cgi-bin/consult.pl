@@ -11,7 +11,7 @@ print <<HTML;
   <head> 
     <meta charset="utf-8"> 
     <link rel="stylesheet" type="text/css" href="../estilo.css">
-    <title>Búsquedas bibliográficas de Programación Web 1 </title>
+    <title>Búsqueda de Universidades Licenciadas</title>
   </head>
 <body>
 HTML
@@ -22,9 +22,13 @@ my $data = $query->param("data");
 my $flag;
 if(!($fields eq "") && !($data eq "")){
     open(IN, "../data/Programas de Universidades.csv") or die "<h1>ERROR: open file</h1>\n";
+    print "<p>Iniciando archivo</p>\n";
     while(my $line = <IN>){
+        print "ENTRO";
         my %list = isMatchLine($line);
+        print "Ingreso ";
         my $value = $list{$fields};
+        print "Otra vez \n";
         if(defined($value) && $value =~ /.*$data.*/){
             print "<h1>Encontrado:</h1>\n";
             print "<p>$line</p>";
@@ -68,25 +72,22 @@ sub isMatchLine {
                    (. +)\|([^|]+)\|(. +)\|(\d+)\|(. +)\|((. +)\.*$)\|((. +))\.*$/x
     ) {
         $dict{"CODIGO_ENTIDAD"} = $1;
-        $dict{"NOMBRE"} = $2;
+        $dict{"name"} = $2;
         $dict{"TIPO_GESTION"} = $3;
         $dict{"ESTADO_LICENCIAMIENTO"} = $4;
-        $dict{"PERIODO_LICENCIAMIENTO"} = $5;
+        $dict{"period"} = $5;
         $dict{"CODIGO_FILIAL"} = $6;
         $dict{"NOMBRE_FILIAL"} = $7;
         $dict{"DEPARTAMENTO_FILIAL"} = $8;
         $dict{"PROVINCIA_FILIAL"} = $9;
         $dict{"CODIGO_LOCAL"} = $10;
-        $dict{"DEPARTAMENTO_LOCAL"} = $11;
+        $dict{"department"} = $11;
         $dict{"PROVINCIA_LOCAL"} = $12;
         $dict{"DISTRITO_LOCAL"} = $13;
         $dict{"LATITUD_UBICACION"} = $14;
         $dict{"LONGITUD_UBICACION"} = $15;
         $dict{"TIPO_AUTORIZACION_LOCAL"} = $16;
-        $dict{"DENOMINACION_PROGRAMA"} = $17;
-    } else {
-        print "<p>Error la linea no hace match:</p>\n";
+        $dict{"program"} = $17;
     }
-
     return %dict;
 }
