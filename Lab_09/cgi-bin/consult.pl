@@ -25,12 +25,13 @@ my $data = <STDIN>;
 my $flag;
 
 if(!($fields eq "") && !($data eq "")){
-open(IN, "../data/Programas de Universidades.csv") or die "<h1>ERROR: open file</h1>\n";
+open(IN, "../data/file.txt") or die "<h1>ERROR: open file</h1>\n";
     print "<p>Iniciando archivo</p>\n";
     while(my $line = <IN>){
-    print "$line stop\n";
+        print "$line\n";
         my %list = isMatchLine($line);
         my $value = $list{$fields};
+        print "$value\n";
         if(defined($value) && $value =~ /.*$data.*/){
             print "<h1>Encontrado:</h1>\n";
             print "<p>$line</p>";
@@ -64,39 +65,16 @@ HTML
 #TIPO_NIVEL_ACADEMICO|NIVEL_ACADEMICO|CODIGO_CLASE_PROGRAMA_N2|
 #NOMBRE_CLASE_PROGRAMA_N2|TIPO_AUTORIZACION_PROGRAMA|
 #TIPO_AUTORIZACION_PROGRAMA_LOCAL
+
 sub isMatchLine {
     my $line = $_[0];
     my %dict;
 
-    if ($line =~ /^(\d+)\|([^|]+)\|([^|]+)\|([^|]+)\|(\d+)\|(.{1})\|
-                   (.+\-.+)\|
-                   ([^|]+)?\|([^|]+(\d+))\|([^|]+)\|([^|]+)\|([^|]+)\|
-                   (\-\^\d+\.\d+\$){2}\|([^|]+)\|(([^|]+)\.*$)\|
-                   ([^|]+)\|([^|]+)\|([^|]+)\|(\d+)\|([^|]+)\|(([^|]+)\.*$)\|(([^|]+)\|[^|]+)\|([^|]+)\|([^|]+)\|([^|]+)\|([^|]+)\|([^|]+)\|([^|]+)\|([^|]+)$/x
-    ) {
+    if ($line =~ /^(\d+)\|([^|]+)\|.+/) {
         $dict{"CODIGO_ENTIDAD"} = $1;
+        print "$1\n";
         $dict{"name"} = $2;
-        $dict{"TIPO_GESTION"} = $3;
-        $dict{"ESTADO_LICENCIAMIENTO"} = $4;
-        $dict{"period"} = $5;
-        $dict{"CODIGO_FILIAL"} = $6;
-        $dict{"NOMBRE_FILIAL"} = $7;
-        $dict{"DEPARTAMENTO_FILIAL"} = $8;
-        $dict{"PROVINCIA_FILIAL"} = $9;
-        $dict{"CODIGO_LOCAL"} = $10;
-        $dict{"department"} = $11;
-        $dict{"PROVINCIA_LOCAL"} = $12;
-        $dict{"DISTRITO_LOCAL"} = $13;
-        $dict{"LATITUD_UBICACION"} = $14;
-        $dict{"LONGITUD_UBICACION"} = $15;
-        $dict{"TIPO_AUTORIZACION_LOCAL"} = $16;
-        $dict{"program"} = $17;
-        $dict{"TIPO_NIVEL_ACADEMICO"} = $18;
-        $dict{"NIVEL_ACADEMICO"} = $19;
-        $dict{"CODIGO_CLASE_PROGRAMA_N2"} = $20;
-        $dict{"NOMBRE_CLASE_PROGRAMA_N2"} = $21;
-        $dict{"TIPO_AUTORIZACION_PROGRAMA"} = $22;
-        $dict{"TIPO_AUTORIZACION_PROGRAMA_LOCAL"} = $23;
+        print "$2\n";
     }
     return %dict;
 }
