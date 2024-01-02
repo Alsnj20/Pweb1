@@ -30,8 +30,9 @@ open(IN, "../data/file.txt") or die "<h1>ERROR: open file</h1>\n";
     while(my $line = <IN>){
         print "$line\n";
         my %list = isMatchLine($line);
+        print "$list{"$fields"}\n";
         my $value = $list{$fields};
-        print "$value\n";
+        print "HOLA $value como estas\n";
         if(defined($value) && $value =~ /.*$data.*/){
             print "<h1>Encontrado:</h1>\n";
             print "<p>$line</p>";
@@ -50,7 +51,18 @@ print <<HTML;
 </html>
 HTML
 
+sub isMatchLine {
+    my $line = $_[0];
+    my %dict;
 
+    if ($line =~ /^(\d+)\|([^|]+)\|.+/) {
+        $dict{"CODIGO_ENTIDAD"} = $1;
+        print "$1\n";
+        $dict{"name"} = $2;
+        print "$2\n";
+    }
+    return %dict;
+}
 #function for found query;
 #CODIGO_ENTIDAD|
 #NOMBRE|
@@ -66,15 +78,3 @@ HTML
 #NOMBRE_CLASE_PROGRAMA_N2|TIPO_AUTORIZACION_PROGRAMA|
 #TIPO_AUTORIZACION_PROGRAMA_LOCAL
 
-sub isMatchLine {
-    my $line = $_[0];
-    my %dict;
-
-    if ($line =~ /^(\d+)\|([^|]+)\|.+/) {
-        $dict{"CODIGO_ENTIDAD"} = $1;
-        print "$1\n";
-        $dict{"name"} = $2;
-        print "$2\n";
-    }
-    return %dict;
-}
