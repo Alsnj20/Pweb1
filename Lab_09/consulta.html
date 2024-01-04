@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="./css/style.css" rel="stylesheet">
+    <title>Search for licensed universities|Peru</title>
 </head>
-<body>
+
+<body style="background-image: url(./css/unsa.jpg);">
     <form action="./cgi-bin/consult.pl" method="GET">
-        <label for="fields">Buscar Universidades Licenciadas por: </label>
-        <select name="fields">
-            <option value="CODIGO_ENTIDAD"> ID Universidad </option>
-            <option value="NOMBRE"> Nombre Universidad </option>
-            <option value="PERIODO_LICENCIAMIENTO"> Periodo Linceciamiento </option>
-            <option value="DEPARTAMENTO_LOCAL"> Departamento Local </option>
-            <option value="DENOMINACION_PROGRAMA"> Denominación Programa</option>
-        </select>
+        <label for="fields">Buscar Universidades Licenciadas del Perú por: </label>
+        <div class="fields">
+            <select name="fields">
+                <option>Elige una opción</option>
+                <option value="CODIGO_ENTIDAD"> ID Universidad </option>
+                <option value="NOMBRE"> Nombre Universidad </option>
+                <option value="PERIODO_LICENCIAMIENTO"> Periodo Linceciamiento </option>
+                <option value="DEPARTAMENTO_LOCAL"> Departamento Local </option>
+                <option value="DENOMINACION_PROGRAMA"> Denominación Programa</option>
+            </select>
+        </div>
         <input type="text" name="data"><br>
-        <input type="submit" value="Buscar">
+        <input class="button" type="submit" value="Buscar">
     </form>
 </body>
+
 </html>
