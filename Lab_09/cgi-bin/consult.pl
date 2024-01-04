@@ -18,23 +18,22 @@ print <<HTML;
 <html lang="en">
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <head> 
-    <link rel="stylesheet" type="text/css" href="../estilo.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <title>Búsqueda de Universidades Licenciadas</title>
     </head>
-<body>
+<body style="display:inline; font-family: Arial, sans-serif; text-align: center;">
 HTML
 
 my $flag;
 if(!($fields eq "") && !($data eq "")){
 open(IN, "../data/Programas de Universidades.csv") or die "<h1>ERROR: open file</h1>\n";
-    print "<p>Iniciando archivo</p>\n";
+    print "<p>Cargando búsqueda ...</p>\n";
     <IN>;
     my %map = ("CODIGO_ENTIDAD" => 0, "NOMBRE" => 1, "PERIODO_LICENCIAMIENTO" => 2,
     "DEPARTAMENTO_LOCAL" => 3, "DENOMINACION_PROGRAMA" => 4);
     print "<table>\n";
     print <<HTML;
-    <tr> 
+    <tr>
     <th>CODIGO ENTIDAD</th>
     <th>NOMBRE</th>
     <th>PERIODO DE LICENCIAMIENTO</th>
