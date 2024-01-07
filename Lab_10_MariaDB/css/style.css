@@ -8,37 +8,25 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-
 }
-form {
+h1{
+    text-align: center;
+    margin-bottom: 6px;
+}
+main{
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
     width: auto;
 }
 label {
-    display: block;
-    margin-bottom: 8px;
-    color: #7b7b7b;
-}
-.fields select {
     display: inline-block;
-    width: 100%;
-    cursor: pointer;
-    padding: 8px;
-    color: #7b7b7b;
-    font-size: 1rem;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 12px;
-    border-radius: 12px;
-    box-sizing: border-box;
-    transition: all 0.25s ease;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
+    color: black;
 }
 input {
+    display: inline;
     width: 100%;
     padding: 8px;
     border: 2px solid rgba(0, 0, 0, 0.2);
@@ -48,7 +36,7 @@ input {
 }
 .button {
     font-size: 1rem;
-    background-color: rgb(148, 55, 55);
+    background-color: rgb(72, 130, 120);
     color: #fff;
     padding: 10px;
     border: none;
@@ -56,7 +44,7 @@ input {
     cursor: pointer;
 }
 .button:hover {
-    background-color: rgb(135, 68, 68);
+    background-color: rgb(72, 135, 123);
 }
 /*doc perl*/
 p {
@@ -66,8 +54,9 @@ p {
 }
 table {
     border-collapse: collapse;
-    width: 98%;
+    width: 1100px;
     margin: 20px;
+    text-align: center;
 }
 th,
 td {
@@ -75,16 +64,20 @@ td {
     padding: 8px;
     text-align: left;
 }
+
 th {
     background-color: rgb(183, 183, 212);
 }
+
 td {
     background-color: rgb(216, 216, 231);
 }
+
 a {
     text-decoration: none;
     color: rgb(53, 53, 250);
 }
+
 a:hover {
     color: rgb(68, 68, 217);
 }

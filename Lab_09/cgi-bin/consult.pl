@@ -4,11 +4,7 @@ use strict;
 use warnings;
 use CGI;
 #cabecera de información
-
 my $query = CGI->new;
-#my $fields = "CODIGO_ENTIDAD";
-#my $data = "065";
-
 my $fields = $query->param("fields");
 my $data = $query->param("data");
 $query->charset("UTF-8");
