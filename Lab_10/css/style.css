@@ -1,0 +1,82 @@
+body {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+h1{
+    text-align: center;
+    margin-bottom: 6px;
+}
+main{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    width: auto;
+}
+label {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: black;
+}
+input {
+    display: inline;
+    width: 100%;
+    padding: 8px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+}
+.button {
+    font-size: 1rem;
+    background-color: rgb(72, 130, 120);
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: rgb(72, 135, 123);
+}
+/*doc perl*/
+p {
+    margin: 1rem;
+    font-size: 20px;
+    text-align: start;
+}
+table {
+    border-collapse: collapse;
+    width: 1100px;
+    margin: 20px;
+}
+th,
+td {
+    border: 1px solid rgb(165, 165, 198);
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: rgb(183, 183, 212);
+}
+
+td {
+    background-color: rgb(216, 216, 231);
+}
+
+a {
+    text-decoration: none;
+    color: rgb(53, 53, 250);
+}
+
+a:hover {
+    color: rgb(68, 68, 217);
+}
