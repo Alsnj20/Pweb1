@@ -1,0 +1,20 @@
+// Object Math
+let resultado;
+resultado = Math.PI;
+console.log(resultado);
+resultado = Math.round(2.5);
+console.log(resultado);
+resultado = Math.ceil(2.6);
+console.log(resultado);
+resultado = Math.floor(2.4);
+console.log(resultado);
+resultado = Math.abs(-2.3);
+console.log(resultado);
+resultado = Math.sqrt(169);
+console.log(resultado);
+resultado = Math.min(3,4,5,6);
+console.log(resultado);
+resultado = Math.max(2,4,6,7);
+console.log(resultado);
+resultado = Math.random();
+console.log(resultado);
